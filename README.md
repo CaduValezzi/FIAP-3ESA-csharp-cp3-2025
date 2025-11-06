@@ -59,22 +59,26 @@ ENUNCIADO
 -------------------------------------------------------
 
 Q1 — GET /api/camisas/estoque-critico  (CamisasController.cs)
+
 Retorne um `EstoqueCriticoDTO` com:
   • `Camisas`: todas as camisas onde `QuantidadeEmEstoque < QuantidadeMinimaAlerta`  
   • `QuantidadeTotal`: soma das `QuantidadeEmEstoque` dessas camisas  
   • `QuantidadeTipos`: número de registros de camisa em crítico
 
 Q2 — GET /api/operacoes/GetInfo?bandaId=  (OperacoesController.cs)
+
 Retorne `List<InfoEstoqueDTO>`.
   • Se `bandaId` vier na query, retorne **apenas** as camisas da banda indicada.  
   • Se **não** vier, retorne **todas** as camisas.  
 
 Q3 — POST /api/operacoes/GerarEstoqueInicial  (OperacoesController.cs)
+
 Gere o arquivo **`files/DDMMAA_estoque_inicial.txt`** no formato:
   `<IdCamisa>;<NomeBanda>;<QuantidadeEmEstoque>`  
 Retorne **a string** escrita no arquivo na resposta.
 
 Q4 — POST /api/operacoes/GerarEstoqueFinal  (OperacoesController.cs)
+
 É garantido que a tripla **(BandaId, Modelo, Tamanho)** identifica unicamente uma camisa.
 
 A partir de **`files/DDMMAA_compras.txt`**:
@@ -84,10 +88,12 @@ A partir de **`files/DDMMAA_compras.txt`**:
   • Retorne **a string** do arquivo gerado
 
 Q5 — POST /api/operacoes/AtualizarEstoque  (OperacoesController.cs)
+
 Leia `files/DDMMAA_estoque_final.txt` e atualize no banco:
   `Camisa.QuantidadeEmEstoque = <QuantidadeFinal>`  
 
 Q6 — POST /api/operacoes/SalvarPedidos  (OperacoesController.cs)
+
 A partir de `files/DDMMAA_compras.txt`:
   • Para cada bloco `#`, criar **Pedido** com:
       `DataPedido =` data de hoje + HH:mm do bloco  
@@ -95,6 +101,9 @@ A partir de `files/DDMMAA_compras.txt`:
       `Status =` **Entregue**  
   • Para as demais linha do bloco, criar **ItemPedido**, resolvendo `CamisaId` por **(Banda + Modelo + Tamanho)**  
   • Salvar no banco  
+
+Cada questão vale 2 pontos.
+(SIM! A prova vale mais que dez, mas dez é a nota máxima)
 
 -------------------------------------------------------
 DÚVIDAS
