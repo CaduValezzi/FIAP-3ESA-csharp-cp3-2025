@@ -16,10 +16,15 @@ Ao fim, **envie o link do seu fork** no Assignment **“CP3 - C#”** no Teams.
 ONDE ESTÁ CADA QUESTÃO NO CÓDIGO
 -------------------------------------------------------
 Q1  → Controllers/CamisasController.cs      (GET  /api/camisas/estoque-critico)
+
 Q2  → Controllers/OperacoesController.cs    (GET  /api/operacoes/GetInfo?bandaId=)
+
 Q3  → Controllers/OperacoesController.cs    (POST /api/operacoes/GerarEstoqueInicial)
+
 Q4  → Controllers/OperacoesController.cs    (POST /api/operacoes/GerarEstoqueFinal)
+
 Q5  → Controllers/OperacoesController.cs    (POST /api/operacoes/AtualizarEstoque)
+
 Q6  → Controllers/OperacoesController.cs    (POST /api/operacoes/SalvarPedidos)
 
 OBS.: Existem **CRUDs prontos** em `BandasController`, `CamisasController`, `PedidosController` e `ItensPedidoController`.
