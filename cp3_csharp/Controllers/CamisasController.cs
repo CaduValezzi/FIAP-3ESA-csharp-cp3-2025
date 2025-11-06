@@ -120,13 +120,35 @@ public class CamisasController : ControllerBase
     [HttpGet("estoque-critico")]
     public async Task<ActionResult<EstoqueCriticoDTO>> EstoqueCritico()
     {
-        // Questão 1
-        // implemente o endpoint que retorne um EstoqueCriticoDTO,
-        // contendo em Camisas, as camisas que tem QuantidadeEmEstoque < QuantidadeMinimaAlerta
-        // em QuantidadeTotal a soma das QuantidadeEmEstoque dessas camisas
-        // em QuantidadeTipos a quantidade de entradas no banco com estoque critico
+        try
+        {
+            // Buscar camisas com estoque abaixo do mínimo
+            var camisasCriticas = await _db.Camisas
+                .Where(c => c.QuantidadeEmEstoque < c.QuantidadeMinimaAlerta)
+                .AsNoTracking()
+                .ToListAsync();
 
-        throw new NotImplementedException();
+            // Calcular quantidade total de camisas em estoque crítico
+            int quantidadeTotal = camisasCriticas.Sum(c => c.QuantidadeEmEstoque);
+
+            // Calcular quantidade de tipos de camisas em estoque crítico
+            int quantidadeTipos = camisasCriticas.Count;
+
+            // Montar DTO
+            var dto = new EstoqueCriticoDTO
+            {
+                Camisas = camisasCriticas,
+                QuantidadeTotal = quantidadeTotal,
+                QuantidadeTipos = quantidadeTipos
+            };
+
+            return Ok(dto);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
+        }
     }
+
 
 }
